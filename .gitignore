@@ -1,0 +1,101 @@
+# General
+.DS_Store                # macOS system files
+Thumbs.db                # Windows system files
+*.log                    # Log files
+*.pid                    # PID files
+*.gz                     # Gzip archive files
+*.zip                    # Zip archive files
+*.swp                    # Swap files created by text editors
+
+# Node.js (Frontend)
+node_modules/            # Dependency folder for Node.js
+npm-debug.log*           # Debug logs from npm
+yarn-debug.log*          # Debug logs from Yarn
+yarn-error.log*          # Error logs from Yarn
+package-lock.json        # Lock files (optional, depends on the team's workflow)
+.env.local               # Local environment variables for Next.js
+.env.development.local   # Local development environment variables
+.env.test.local          # Local testing environment variables
+.env.production.local    # Local production environment variables
+.env                     # General environment variables file (important: never commit this file)
+
+# Python (Backend)
+.venv/                   # Python virtual environment folder
+.venv
+__pycache__/             # Python bytecode cache
+*.py[cod]                # Python compiled files
+*.pyo                    # Python optimized files
+env/                     # In case a different virtual environment folder is used
+Pipfile                  # Pipenv dependency management (optional)
+Pipfile.lock             # Pipenv lock file (optional)
+
+# FastAPI (Backend)
+# Avoid uploading sensitive files used for FastAPI configuration or private keys
+instance/                # FastAPI instance folder
+config.py                # Custom configuration file with credentials
+
+# Hugging Face API keys (if stored locally)
+hf_key.txt               # Example: Hugging Face API key stored in a local file
+huggingface_api_keys/    # Any folder containing keys or secrets
+
+# AWS
+.aws/                    # AWS CLI configuration folder
+aws-credentials.json     # AWS credential files
+aws_key.pem              # AWS private key for access
+
+# Deployment (AWS, Zappa, Docker)
+.zappa_settings.json     # Zappa deployment configuration file
+*.tfstate                # Terraform state files, may include sensitive data
+.dockerignore            # Docker ignore file
+docker-compose.override.yml # Override docker-compose files (could contain local setup)
+.docker/                 # Docker configuration directory
+
+# Security
+*.pem                    # PEM files (e.g., SSH keys, SSL certificates)
+*.crt                    # Certificate files
+*.key                    # Private key files
+*.p12                    # Certificate files for Apple
+secrets/                 # Directory for storing sensitive information
+.secret                   # Any file or directory that could contain sensitive information
+
+# VSCode
+.vscode/                 # VSCode settings and workspace files
+
+# JetBrains IDEs (PyCharm/WebStorm/IntelliJ IDEA)
+.idea/                   # JetBrains project configuration folder
+
+# Logs
+logs/                    # General log directory
+*.log                    # Log files
+
+# System Files (Windows)
+desktop.ini              # System file for desktop layout
+
+# macOS system files
+.DS_Store                # macOS desktop services store
+.Spotlight-V100          # macOS spotlight index files
+.Trashes                 # macOS trash folder
+._*                      # macOS hidden files used by Finder
+
+# Environment Variables and Credentials
+.env                     # Main environment variable file
+.env.*                   # Any other environment files
+*.env                    # Any other files that store environment variables
+*.config                 # Configuration files (if they include sensitive data)
+*.credentials            # Credential files (if they include sensitive data)
+
+# Build Output
+build/                   # Frontend build output
+dist/                    # Backend distribution folder
+
+# Compiled code
+*.out                    # Compiled binary output
+*.o                      # Compiled object files
+
+# Database
+*.sqlite3                # SQLite database files
+db.sqlite3               # General database file
+*.db                     # Any other database files
+
+# Git
+.gitignore               # Prevent gitignore from being committed to itself
