@@ -20,6 +20,9 @@ package-lock.json        # Lock files (optional, depends on the team's workflow)
 .env                     # General environment variables file (important: never commit this file)
 
 # Python (Backend)
+env/
+venv/
+.env
 .venv/                   # Python virtual environment folder
 .venv
 __pycache__/             # Python bytecode cache
