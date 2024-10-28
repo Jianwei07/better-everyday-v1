@@ -4,9 +4,10 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 
+# Load Hugging Face token
 hf_token = os.getenv("HUGGINGFACE_HUB_TOKEN_WRITE")
 
-# Configure Hugging Face Endpoint with adjusted parameters for health-specific responses
+# Configure Hugging Face Endpoint with parameters for concise responses
 llm = HuggingFaceEndpoint(
     repo_id="microsoft/Phi-3.5-mini-instruct",
     task="text-generation",
@@ -18,29 +19,32 @@ llm = HuggingFaceEndpoint(
     huggingfacehub_api_token=hf_token,
 )
 
+# Define a prompt template for health advice
 prompt = PromptTemplate(
     input_variables=["input"],
     template=(
-        "You are Eva, a virtual health assistant providing focused, concise advice. "
+        "You are Eva, a virtual health assistant providing concise health advice. "
         "Answer user questions with practical health tips only. Do not introduce yourself, "
-        "do not explain your background, and do not mention Phi Beta Kappa or any credentials.\n\n"
+        "do not explain your background, and avoid any mention of credentials.\n\n"
         "User: {input}\nAssistant:"
     )
 )
-# Initialize LLMChain with the prompt and model
+
+# Create the LLMChain with the prompt and model
 chat_chain = prompt | llm | StrOutputParser()
 
+# Function to clean up the response
 def clean_response(response_text):
-    # Ensure response ends on a complete sentence
     if not response_text.endswith((".", "!", "?")):
         last_period = response_text.rfind(".")
         if last_period != -1:
-            response_text = response_text[:last_period + 1]  # Trim to last full sentence
-    return response_text
+            response_text = response_text[:last_period + 1]
+    return response_text.strip()
 
+# Function to generate a response from the model
 async def generate_response(input_text: str, topic: str = "General") -> str:
     try:
-        # Modify the input based on topic for focused responses
+        # Map the topic to an introductory statement for context
         topic_intro = {
             "Eye Health": "Provide health advice on eye health.",
             "Neuro": "Provide brain health tips to improve cognition.",
@@ -50,8 +54,8 @@ async def generate_response(input_text: str, topic: str = "General") -> str:
             "Random Advice": "Give a random health tip.",
             "Quick Tips": "Share a quick, motivational health tip."
         }
-
-        # Concatenate topic intro with user input for context
+        
+        # Adjust the input with the topic-specific intro for context
         adjusted_input = f"{topic_intro.get(topic, 'General wellness advice')}\nUser: {input_text}"
         
         # Invoke the model synchronously in an async context
