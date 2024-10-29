@@ -50,3 +50,24 @@ This chatbot uses a hybrid architecture involving:
    ```bash
    git clone https://github.com/your-username/eva-health-chatbot.git
    cd eva-health-chatbot
+2. Install required packages:
+   ```bash
+   pip install -r requirements.txt
+3. Start FastAPI Server:
+   ```bash
+   uvicorn main:app --reload
+### Customization
+To train Eva on new topics or specific podcast insights:
+   1. Curate Dataset: Add health-related information from YouTube podcasts or other sources into a structured format (JSON or CSV).
+   2. Embed New Knowledge: Use the embedding model to create and store vectors for the new dataset.
+   3. Fine-Tune (Optional): Fine-tune the conversational model on these topics if needed to improve response relevance.
+### Use Cases
+   1. Memory Aid for Health Tips: Use Eva to quickly recall advice from podcasts on maintaining good health practices.
+   2. Topic-Specific Retrieval: Retrieve advice on specific topics like neuro health or fat loss based on past listening, creating a personalized knowledge base.
+   3. Daily Check-Ins: Ask Eva for health tips as daily reminders of key wellness practices, reinforcing positive habits.
+### Future Goals
+   1.Enhanced Context Retention: Improve Eva’s ability to retain context over multiple questions.
+   Expandable Knowledge Base: Add more health and wellness topics from various reliable sources.
+   UI Enhancements: Embed the chatbot into a personal website or Chrome extension for easier access.
+### Contributing
+If you'd like to contribute or suggest features, feel free to submit a pull request or open an issue in this repository.
